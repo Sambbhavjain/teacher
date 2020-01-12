@@ -24,41 +24,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RecyclerView programmingList = (RecyclerView) findViewById(R.id.programmingList);
-        programmingList.setLayoutManager(new LinearLayoutManager(this));
-        String[] languages = {"A", "B", "C"};
-        programmingList.setAdapter(new ProgrammingAdapter(languages));
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setOnNavigationItemReselectedListener((BottomNavigationView.OnNavigationItemReselectedListener) navlistener);
+
+        bottomNav.setOnNavigationItemSelectedListener(navlistener );
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
-//        btn=(Button) findViewById(R.id.button2);
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                showDialog();
-//
-//            }
-//        });
+
     }
 
-
-    public void showDialog()
-    {
-
-        Dialog dialog=new Dialog(this);
-        dialog.setContentView(R.layout.dialog);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        Button dialog_btn=dialog.findViewById(R.id.button);
-        dialog_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, new AddSlotFragment()).commit();
-            }
-        });
-
-        dialog.show();
-    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navlistener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
